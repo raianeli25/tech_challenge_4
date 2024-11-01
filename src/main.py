@@ -107,14 +107,15 @@ def monitor_drifts():
 async def get_metrics():
     return Response(generate_latest(),media_type=CONTENT_TYPE_LATEST)
 
+
+# Schedule drift monitoring
+scheduler = BackgroundScheduler()
+scheduler.add_job(monitor_drifts, "interval", minutes=1)
+scheduler.start()
+
 if __name__ == "__main__":
     # Start Prometheus metrics server
     start_http_server(8000)
-
-    # Schedule drift monitoring
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(monitor_drifts, "interval", minutes=1)
-    scheduler.start()
 
     # Run FastAPI app
     import uvicorn
