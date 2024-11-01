@@ -1,0 +1,11 @@
+scikit-learn
+numpy
+pandas
+seaborn
+fastapi
+apscheduler
+prometheus-client
+joblib
+werkzeug
+psutil
+uvicorn
